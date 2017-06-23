@@ -1,6 +1,63 @@
 var app = angular.module('app', []);
 
-app.controller('ctrl', function($scope, $http, $timeout) {
+app.controller('ctrl', function($scope, $http, $timeout, $sce) {
+
+
+	var maps = '{"maps":[' +
+	'{"link":"http://online.seterra.com/en/vgp/3006#gameselect","name":"Canada" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3016#gameselect","name":"South America" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3020#gameselect","name":"Eastern Europe" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3018#gameselect","name":"Northern Europe" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3019#gameselect","name":"Southern Europe" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3021#gameselect","name":"Western Europe" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3039#gameselect","name":"Central Africa" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3040#gameselect","name":"Eastern Africa" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3037#gameselect","name":"Northern Africa" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3041#gameselect","name":"Southern Africa" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3038#gameselect","name":"Western Africa" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3166#gameselect","name":"South Asia" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3033#gameselect","name":"Southeast Asia" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3048#gameselect","name":"Former Soviet Union" },' +
+	'{"link":"http://online.seterra.com/en/vgp/3049#gameselect","name":"Middle East" } ]}';
+
+
+
+	// Get a random map quiz
+	$scope.getQuiz = function() {
+
+		// Choose random quiz
+		var obj = JSON.parse(maps);
+		var rnd = Math.floor((Math.random() * obj.maps.length));
+		$scope.quizName = obj.maps[rnd].name;
+		$scope.quizLink = $sce.trustAsResourceUrl(obj.maps[rnd].link);
+		angular.element(document.querySelectorAll('#finish-quiz-btn')).css('display','none');
+
+
+		// Disable all elements other than map 10% of the time
+		rnd = Math.floor((Math.random() * 10));
+		if(rnd == 1) {
+			// Disable elements
+			var elements = angular.element(document.querySelectorAll('#links, #links a img, .weather'));
+			angular.element(document.querySelectorAll('#links, #links a img, .weather'));
+			elements.addClass('disabled');
+			
+			// Show button
+			angular.element(document.querySelectorAll('#finish-quiz-btn')).css('display','block');
+		}
+	};
+
+
+
+	// Enables links after quiz has been completed
+	$scope.finishQuiz = function() {
+		// Enable elements
+		var elements = angular.element(document.querySelectorAll('#links, #links a img, .weather'));
+		elements.removeClass('disabled');
+
+		// Hide button
+		angular.element(document.querySelectorAll('#finish-quiz-btn')).css('display','none');
+	}
+
 
 
 	// Get a random wiki entry
@@ -17,7 +74,6 @@ app.controller('ctrl', function($scope, $http, $timeout) {
 			// so we get it like by accessing the first object of the pages returned
 			var temp = data.query.pages;
 			$scope.wiki = temp[Object.keys(temp)[0]];
-			console.log($scope.wiki);
 			$scope.wikiLoading = false;
 
 
@@ -27,7 +83,6 @@ app.controller('ctrl', function($scope, $http, $timeout) {
 				try {
 					var temp = dat.query.pages;
 					temp = temp[Object.keys(temp)[0]];
-					console.log(temp.imageinfo[0].url);
 					$scope.wikiImage = temp.imageinfo[0].url;
 				} catch(err) {
 					$scope.wikiImage = "";
@@ -47,13 +102,13 @@ app.controller('ctrl', function($scope, $http, $timeout) {
 		var appID = "b8d7ed88a6c491c570c390e4a20fb285";
 		$http.jsonp(apiUrl + "q=" + city + "&units=metric&APPID=" + appID + "&callback=JSON_CALLBACK")
 		.success(function(data) {
-			console.log(data);
 			$scope.weather = data;
 		});
 	};
 	
 	
 
-	$scope.randomWiki();
+	//$scope.randomWiki();
 	$scope.getWeather();
+	$scope.getQuiz();
 });
