@@ -1,3 +1,11 @@
+$(document).keypress(function(e) {
+	let key = e.key;
+	let link = $('#' + key).attr('href');
+	location.href = link;//console.log(link);
+});
+
+
+
 var app = angular.module('app', []);
 
 app.controller('ctrl', function($scope, $http, $timeout, $sce) {
@@ -97,7 +105,7 @@ app.controller('ctrl', function($scope, $http, $timeout, $sce) {
 
 	// Get weather based on location
 	$scope.getWeather = function() {
-		var city = "lethbridge";
+		var city = "kelowna";
 		var apiUrl = "http://api.openweathermap.org/data/2.5/weather?";
 		var appID = "b8d7ed88a6c491c570c390e4a20fb285";
 		$http.jsonp(apiUrl + "q=" + city + "&units=metric&APPID=" + appID + "&callback=JSON_CALLBACK")
@@ -110,5 +118,5 @@ app.controller('ctrl', function($scope, $http, $timeout, $sce) {
 
 	//$scope.randomWiki();
 	$scope.getWeather();
-	$scope.getQuiz();
+	//$scope.getQuiz();
 });
