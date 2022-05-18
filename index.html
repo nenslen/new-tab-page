@@ -26,7 +26,7 @@
     	
     		<a class="grid-cell icon" href="https://www.google.ca/maps"><img src="images/icons/maps.png" alt="google maps"></a>
 
-    		<a class="grid-cell icon" href="https://app.youneedabudget.com/"><img src="images/icons/ynab.png" alt="ynab"></a>
+    		<!-- <a class="grid-cell icon" href="https://app.youneedabudget.com/"><img src="images/icons/ynab.png" alt="ynab"></a> -->
     	
     		<!-- <a class="grid-cell icon" href="https://outlook.live.com/owa/"><img src="images/icons/hotmail.png" alt="hotmail"></a> -->
     	
@@ -37,25 +37,32 @@
     		<a class="grid-cell icon" href="https://github.com/nenslen?tab=repositories"><img src="images/icons/github.png" alt="github"></a>
 	    </div>
 
-	    <div class="grid grid-2">
-    		<div class="grid-cell" id="weather-outer-container">
-    			<a href="https://weather.gc.ca/city/pages/bc-48_metric_e.html">
-	    			<div class="grid weather-container">
-	    				
-	    			</div>
-	    			<div id="current-weather">
-	    				<div id="current-temp"></div>
-	    				<div class="weather-icon" id="current-weather-icon"></div>
-	    			</div>
-	    		</a>
-    		</div>
-	    	
-	    	<div class="grid-cell">
-	    		<div id="trello">
-	    			
-	    		</div>
+	    
+	    <div id="search-bars">
+	    	<div class="serach-bar-wrapper">
+	    		<img class="search-image" src="images/icons/stack-overflow.png">
+	    		<input type="text" class="input search-input" id="sb-stack-overflow" data-url="stackoverflow.com" placeholder="Search stackoverflow.com...">
+	    	</div>
+
+	    	<div class="serach-bar-wrapper">
+	    		<img class="search-image" src="images/icons/reddit-round.png">
+	    		<input type="text" class="input search-input" id="sb-reddit" data-url="reddit.com" placeholder="Search reddit.com...">
 	    	</div>
 	    </div>
+
+
+	    <div class="grid-cell" id="weather-outer-container">
+			<a href="https://weather.gc.ca/city/pages/bc-48_metric_e.html">
+    			<div class="grid weather-container">
+    				
+    			</div>
+    			<div id="current-weather">
+    				<div id="current-temp"></div>
+    				<div class="weather-icon" id="current-weather-icon"></div>
+    			</div>
+    		</a>
+		</div>
+
 	</div>
 </body>
 </html>

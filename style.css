@@ -1,5 +1,5 @@
 body {
-	background-image: url('images/bg.png');
+	background-image: url('images/bg.webp');
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -104,11 +104,45 @@ a, a:visited, a:hover, a:active {
 
 #weather-outer-container {
 	border-radius: 10px;
+  max-width: 775px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 
+#search-bars {
+  margin-bottom: 50px;
+}
+
+.serach-bar-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 25px;
+}
+
+.input {
+  display: block;
+  width: 100% !important;
+  max-width: 600px;
+  padding: 12px 14px;
+  border: 1px solid rgba(64,64,64,0.4);
+  border-radius: 0;
+  color: #0c0c0d;
+  font-size: 1rem;
+  line-height: normal;
+  background: #fff;
+  font-weight: 400;
+  -webkit-appearance: none;
+  font-size: 1.5em;
+}
 
 
+.search-image {
+  max-width: 50px;
+  display: inline-block;
+  margin-right: 5px;
+}
 
 
 
